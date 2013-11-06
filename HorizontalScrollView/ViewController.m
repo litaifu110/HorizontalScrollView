@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()<HorizontalScrollViewDelegate>
+@interface ViewController ()<HorizontalScrollViewDelegate,UIScrollViewDelegate>
 {
     HorizontalScrollView *_scrollView;
 }
@@ -29,6 +29,12 @@
     self.view.backgroundColor = [UIColor blackColor];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if ([scrollView isMemberOfClass:[HorizontalScrollView class]]) {
+        [(HorizontalScrollView *)scrollView scrollViewWillBeginDragging:scrollView];
+    }
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if ([scrollView isMemberOfClass:[HorizontalScrollView class]]) {
@@ -43,18 +49,22 @@
 
 - (UIView *)horizontalScrollView:(UIScrollView *)horizontalScrollView cellForRow:(NSInteger)row{
     static NSString *identifier = @"cell";
+    CustomView *view;
     HorizontalCell *cell = [(HorizontalScrollView *)horizontalScrollView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil){
         cell = [[HorizontalCell alloc] initWithIndentifier:identifier];
         cell.frame = CGRectMake(20, 20, CGRectGetWidth(_scrollView.bounds) - 40, CGRectGetHeight(self.view.bounds) - 40);
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        view = [[CustomView alloc] initWithFrame:CGRectMake(20, 20, CGRectGetWidth(cell.bounds) - 40, CGRectGetHeight(cell.bounds) - 40)];
+        view.tag = 1;
+        view.backgroundColor = [UIColor blackColor];
+        [cell addSubview:view];
+        
+        
     }
-    if (row%3 == 0) {
-        cell.backgroundColor = [UIColor redColor];
-    }else if(row%3 == 1){
-        cell.backgroundColor = [UIColor yellowColor];
-    }else{
-        cell.backgroundColor = [UIColor greenColor];
-    }
+    view = (CustomView *)[cell viewWithTag:1];
+    view.str = [NSString stringWithFormat:@"%d",row];
     return cell;
 }
 

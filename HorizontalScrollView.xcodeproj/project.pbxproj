@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D29AB07182A25E400CB0149 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D29AB06182A25E400CB0149 /* CustomView.m */; };
 		7D53B472182899C4006C6D8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D53B471182899C4006C6D8F /* Foundation.framework */; };
 		7D53B474182899C4006C6D8F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D53B473182899C4006C6D8F /* CoreGraphics.framework */; };
 		7D53B476182899C4006C6D8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D53B475182899C4006C6D8F /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D29AB05182A25E400CB0149 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		7D29AB06182A25E400CB0149 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 		7D53B46E182899C4006C6D8F /* HorizontalScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HorizontalScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D53B471182899C4006C6D8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D53B473182899C4006C6D8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,8 @@
 				7D53B487182899C4006C6D8F /* ViewController.m */,
 				7D53B489182899C4006C6D8F /* Images.xcassets */,
 				7D53B478182899C4006C6D8F /* Supporting Files */,
+				7D29AB05182A25E400CB0149 /* CustomView.h */,
+				7D29AB06182A25E400CB0149 /* CustomView.m */,
 			);
 			path = HorizontalScrollView;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D29AB07182A25E400CB0149 /* CustomView.m in Sources */,
 				7D53B488182899C4006C6D8F /* ViewController.m in Sources */,
 				7D53B4A8182899E7006C6D8F /* HorizontalScrollView.m in Sources */,
 				7D53B482182899C4006C6D8F /* AppDelegate.m in Sources */,
@@ -466,6 +472,7 @@
 				7D53B4A2182899C4006C6D8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D53B4A3182899C4006C6D8F /* Build configuration list for PBXNativeTarget "HorizontalScrollViewTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +481,7 @@
 				7D53B4A5182899C4006C6D8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
