@@ -105,7 +105,6 @@
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     swipeDirection = @"";
-    rowShow = -1;
     beginPoint = scrollView.contentOffset.x;
 }
 //外部可引用的方法
@@ -113,37 +112,37 @@
     CGFloat x = scrollView.contentOffset.x;
     NSInteger rowLeft = 0,rowCenter = 0,rowRight = 0;
     NSInteger left = fmod(floor(x/widthCell), 3);
-    NSLog(@"left ======%d",left);
+//    NSLog(@"left ======%ld",(long)left);
     if(left < 0){//顶头右滑（所有滑动针对触摸点的移动）
         return;
     }
-    
-    rowLeft = floor(x/widthCell) - 1;
-    rowCenter = floor(x/widthCell);
-    rowRight = floor(x/widthCell)+1;
-    
+    NSLog(@"x/widthCell = %f",x/widthCell);
     if (x - beginPoint > 0) {//左滑（手势方向）  cellindex越来越大
         swipeDirection = @"left";
-        rowLeft = floor(x/widthCell) - 1;
         rowCenter = floor(x/widthCell);
-        rowRight = floor(x/widthCell)+1;
+        rowLeft = rowCenter - 1;
+        rowRight = rowCenter + 1;
+        if(rowRight >= [_delegateHorizontal numbersOfRowsInHorizontalScrollView:self]){//顶头左滑
+            return;
+        }
     }else{
         swipeDirection = @"right";
-        rowLeft = floor(x/widthCell) ;
-        rowCenter = floor(x/widthCell) + 1;
-        rowRight = floor(x/widthCell)+2;
+        rowCenter = ceil(x/widthCell);
+        rowLeft = rowCenter - 1;
+        rowRight = rowCenter + 1;
+        if(rowLeft < 0){//顶头 不再去show下一个
+            return;
+        }
     }
-    NSLog(@"x/widthCell = %f",x/widthCell);
-    if(floor(x/widthCell) + 1 >= [_delegateHorizontal numbersOfRowsInHorizontalScrollView:self]){//顶头左滑
-        return;
-    }
+//    NSLog(@"floor (x/widthCell) = %f",floor (x/widthCell));
+//    NSLog(@"ceil(x/widthCell) = %f",ceil(x/widthCell));
 
-    if ([swipeDirection isEqualToString:@"left"] && rowShow == -1) {
+    if ([swipeDirection isEqualToString:@"left"] ) {
+        rowShow = rowCenter;
         [self showRow:rowRight];
+    }else if([swipeDirection isEqualToString:@"right"] ){
         rowShow = rowCenter;
-    }else if([swipeDirection isEqualToString:@"right"] && rowShow == -1){
         [self showRow:rowLeft];
-        rowShow = rowCenter;
     }
     
 }

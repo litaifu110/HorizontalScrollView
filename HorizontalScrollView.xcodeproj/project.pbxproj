@@ -38,6 +38,7 @@
 /* Begin PBXFileReference section */
 		7D29AB05182A25E400CB0149 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
 		7D29AB06182A25E400CB0149 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		7D30A379182B457100B7224A /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		7D53B46E182899C4006C6D8F /* HorizontalScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HorizontalScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D53B471182899C4006C6D8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D53B473182899C4006C6D8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +89,7 @@
 		7D53B465182899C4006C6D8F = {
 			isa = PBXGroup;
 			children = (
+				7D30A379182B457100B7224A /* Reveal.framework */,
 				7D53B477182899C4006C6D8F /* HorizontalScrollView */,
 				7D53B496182899C4006C6D8F /* HorizontalScrollViewTests */,
 				7D53B470182899C4006C6D8F /* Frameworks */,
@@ -390,9 +392,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Weilong Song (9S6M922F5K)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/ltf/Desktop/test/HorizontalScrollView,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollView/HorizontalScrollView-Prefix.pch";
 				INFOPLIST_FILE = "HorizontalScrollView/HorizontalScrollView-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -403,9 +415,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Weilong Song (9S6M922F5K)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/ltf/Desktop/test/HorizontalScrollView,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollView/HorizontalScrollView-Prefix.pch";
 				INFOPLIST_FILE = "HorizontalScrollView/HorizontalScrollView-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
