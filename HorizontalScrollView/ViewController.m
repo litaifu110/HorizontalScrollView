@@ -44,7 +44,7 @@
 
 #pragma mark - HorizontalScrollViewDelegate
 - (NSInteger)numbersOfRowsInHorizontalScrollView:(UIScrollView *)horizontalScrollView{
-    return 10;
+    return 30;
 }
 
 - (UIView *)horizontalScrollView:(UIScrollView *)horizontalScrollView cellForRow:(NSInteger)row{

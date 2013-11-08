@@ -25,7 +25,6 @@
         [self initUI];
         [self initProperty];
         _initIndex = row;
-        rowShow = -1;
     }
     return self;
 }
@@ -112,11 +111,17 @@
     CGFloat x = scrollView.contentOffset.x;
     NSInteger rowLeft = 0,rowCenter = 0,rowRight = 0;
     NSInteger left = fmod(floor(x/widthCell), 3);
-//    NSLog(@"left ======%ld",(long)left);
+//     NSLog(@"x/widthCell = %f",x/widthCell);
+//    NSLog(@"floor (x/widthCell) = %f",floor (x/widthCell));
+//    NSLog(@"ceil(x/widthCell) = %f",ceil(x/widthCell));
+
     if(left < 0){//顶头右滑（所有滑动针对触摸点的移动）
         return;
     }
-    NSLog(@"x/widthCell = %f",x/widthCell);
+    if ((x/widthCell) == floor(x/widthCell)) {
+        return;
+    }
+   
     if (x - beginPoint > 0) {//左滑（手势方向）  cellindex越来越大
         swipeDirection = @"left";
         rowCenter = floor(x/widthCell);
@@ -134,14 +139,10 @@
             return;
         }
     }
-//    NSLog(@"floor (x/widthCell) = %f",floor (x/widthCell));
-//    NSLog(@"ceil(x/widthCell) = %f",ceil(x/widthCell));
 
     if ([swipeDirection isEqualToString:@"left"] ) {
-        rowShow = rowCenter;
         [self showRow:rowRight];
     }else if([swipeDirection isEqualToString:@"right"] ){
-        rowShow = rowCenter;
         [self showRow:rowLeft];
     }
     
@@ -172,7 +173,6 @@
         rowForLeft = rowLeft;
         if(cellLeft){
             if([cellLeft isKindOfClass:[HorizontalCell class]]){
-                cellLeft.accessibilityLanguage = @"0";
                 [self pushReusableCell:cellLeft];
             }
         }
@@ -190,7 +190,6 @@
         rowForCenter = rowCenter;
         if(cellCenter){
             if([cellCenter isKindOfClass:[HorizontalCell class]]){
-                cellCenter.accessibilityLanguage = @"1";
                 [self pushReusableCell:cellCenter];
             }
         }
@@ -208,7 +207,6 @@
         rowForRight = rowRight;
         if(cellRight){
             if([cellRight isKindOfClass:[HorizontalCell class]]){
-                cellRight.accessibilityLanguage = @"2";
                 [self pushReusableCell:cellRight];
             }
         }
@@ -228,13 +226,10 @@
 -(HorizontalCell *)dequeueReusableCellWithIdentifier:(NSString *)CellIdentifier{
     HorizontalCell *horiCell;
     NSMutableSet *aCells = [self dCellsWithIndentifier:CellIdentifier];
-//    NSLog(@"===================================");
     if(aCells.count > 0){
         horiCell = [aCells anyObject];
-//         NSLog(@"acells = %@,index = %@",aCells,horiCell.accessibilityLanguage);
         [aCells removeObject:horiCell];
     }
-//    NSLog(@"acells = %@",aCells);
     return horiCell;
 }
 -(void)pushReusableCell:(UIView *)cell{

@@ -35,7 +35,6 @@
     NSInteger _initIndex; //默认显示的index
     
     CGFloat beginPoint;
-    NSInteger rowShow;
     NSString *swipeDirection;
 }
 @property (nonatomic, weak) id <HorizontalScrollViewDelegate> delegateHorizontal;
